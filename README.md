@@ -18,5 +18,5 @@ Welcome to the Exploding Kittens Card Game, a single-player online card game whe
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/exploding-kittens.git
+git clone https://github.com/Foxtrot-14/Exploding-Kitten.git
 ```
