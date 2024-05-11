@@ -2,21 +2,39 @@ import { useState } from "react";
 import "./Home.css";
 import deck from "../assets/deck.png";
 import maincat from "../assets/cat.png";
+import log from "../assets/log.png";
 import Card from "../components/Card";
 import playIcon from "../assets/play.png";
 import stopIcon from "../assets/stop.png";
-
+import lead from "../assets/lead.png";
 const Home = () => {
   const [cards, setCards] = useState([]);
   const [play, setPlay] = useState(false);
-
+  const [cardIndex, setCardIndex] = useState([]);
+  const [count, setCardCount] = useState(0);
+  function selectRandomly(arr) {
+    const result = [];
+    for (let i = 0; i < 5; i++) {
+      const randomIndex = Math.floor(Math.random() * 4);
+      result.push(arr[randomIndex]);
+    }
+    return result;
+  }
   const handlePlayClick = () => {
     setPlay(true);
+    const originalArray = [1, 2, 3, 4];
+    const newArray = selectRandomly(originalArray);
+    setCardIndex(newArray);
+  };
+  const handleStopClick = () => {
+    setPlay(false);
+    setCards([]);
   };
 
   const handleDeckClick = () => {
-    if (play) {
-      setCards([...cards, <Card key={cards.length} />]);
+    if (play && count <= 4) {
+      setCards([...cards, <Card key={cards.length} num={cardIndex[count]} />]);
+      setCardCount(count + 1);
     }
   };
 
@@ -27,6 +45,7 @@ const Home = () => {
           <img src={maincat} alt="logo" />
         </div>
         <div className="main">
+          <h1 className="heading">Exploding Kitten</h1>
           {cards.map((card, index) => (
             <div key={index} className="stacked-card">
               {card}
@@ -38,12 +57,16 @@ const Home = () => {
             <img src={deck} alt="Deck" />
           </div>
         )}
-        <div className="box log">LogIn/SingUp</div>
-        <div className="box start" onClick={handlePlayClick}>
-          <img src={playIcon} alt="Play" />
-          <img src={stopIcon} alt="Stop" />
+        <div className="box log">
+          <img src={log} alt="" />
         </div>
-        <div className="box pro">Profile/Leader board</div>
+        <div className="box start">
+          <img src={playIcon} onClick={handlePlayClick} alt="Play" />
+          <img src={stopIcon} onClick={handleStopClick} alt="Stop" />
+        </div>
+        <div className="box pro">
+          <img src={lead} alt="" />
+        </div>
       </div>
     </div>
   );
