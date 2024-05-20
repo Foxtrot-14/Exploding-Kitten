@@ -46,11 +46,13 @@ const Home = () => {
         </div>
         <div className="main">
           <h1 className="heading">Exploding Kitten</h1>
-          {cards.map((card, index) => (
-            <div key={index} className="stacked-card">
-              {card}
-            </div>
-          ))}
+          <div className="gr">
+            {cards.map((card, index) => (
+              <div key={index} className="stacked-card">
+                {card}
+              </div>
+            ))}
+          </div>
         </div>
         {play && (
           <div className="box deck" onClick={handleDeckClick}>

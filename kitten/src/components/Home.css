@@ -8,6 +8,11 @@
   align-items: center;
   gap: 10px;
 }
+.gr {
+  display: grid;
+  grid-template-columns: repeat(5, 150px);
+  grid-gap: 10px;
+}
 .heading {
   position: absolute;
   top: 0;
@@ -22,6 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .box {
   display: flex;
@@ -31,7 +37,6 @@
   width: 100px;
   cursor: pointer;
 }
-
 .logo {
   display: flex;
   justify-content: center;
