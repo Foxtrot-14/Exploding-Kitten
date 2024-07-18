@@ -7,11 +7,14 @@ import Card from "../components/Card";
 import playIcon from "../assets/play.png";
 import stopIcon from "../assets/stop.png";
 import lead from "../assets/lead.png";
+import Instruction from "./Instruction";
+import Prompt from "./Prompt";
 const Home = () => {
   const [cards, setCards] = useState([]);
   const [play, setPlay] = useState(false);
   const [cardIndex, setCardIndex] = useState([]);
   const [count, setCardCount] = useState(0);
+  const [showInstruction, setShowInstruction] = useState(true);
   function selectRandomly(arr) {
     const result = [];
     for (let i = 0; i < 5; i++) {
@@ -22,6 +25,7 @@ const Home = () => {
   }
   const handlePlayClick = () => {
     setPlay(true);
+    setShowInstruction(false);
     const originalArray = [1, 2, 3, 4];
     const newArray = selectRandomly(originalArray);
     setCardIndex(newArray);
@@ -29,6 +33,7 @@ const Home = () => {
   const handleStopClick = () => {
     setPlay(false);
     setCards([]);
+    setCardCount(0);
   };
 
   const handleDeckClick = () => {
@@ -41,11 +46,13 @@ const Home = () => {
   return (
     <div className="page">
       <div className="hero">
+        <Prompt text="Welcome"/>
         <div className="logo">
           <img src={maincat} alt="logo" />
         </div>
         <div className="main">
           <h1 className="heading">Exploding Kitten</h1>
+          {showInstruction && <Instruction />}
           <div className="gr">
             {cards.map((card, index) => (
               <div key={index} className="stacked-card">
