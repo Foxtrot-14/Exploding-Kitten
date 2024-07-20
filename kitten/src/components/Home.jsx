@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Home.css";
 import deck from "../assets/deck.png";
 import maincat from "../assets/cat.png";
@@ -15,6 +15,14 @@ const Home = () => {
   const [cardIndex, setCardIndex] = useState([]);
   const [count, setCardCount] = useState(0);
   const [showInstruction, setShowInstruction] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
   function selectRandomly(arr) {
     const result = [];
     for (let i = 0; i < 5; i++) {
@@ -39,14 +47,19 @@ const Home = () => {
   const handleDeckClick = () => {
     if (play && count <= 4) {
       setCards([...cards, <Card key={cards.length} num={cardIndex[count]} />]);
+      console.log(cardIndex[count]);
       setCardCount(count + 1);
     }
   };
 
   return (
     <div className="page">
+      {isLoading && (
+        <div className="blur">
+          <Prompt text="Welcome" />
+        </div>
+      )}
       <div className="hero">
-        <Prompt text="Welcome"/>
         <div className="logo">
           <img src={maincat} alt="logo" />
         </div>

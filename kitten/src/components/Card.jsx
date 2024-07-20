@@ -3,14 +3,29 @@ import Defuse from "../assets/Defuse.png";
 import Exploding from "../assets/Exploding.png";
 import Kitten from "../assets/kitten.png";
 import Shuffle from "../assets/Shuffle.png";
+import Prompt from "./Prompt";
+import { useState, useEffect } from "react";
 const Card = (num) => {
-  console.log(num.num);
+  const [showPrompt, setShowPrompt] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPrompt(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
   if (num.num == 1) {
     return (
       <>
         <div className="card">
           <img src={Defuse} alt="image" />
           <h1 className="cardtitle">Defuse</h1>
+          {showPrompt && (
+            <div className="blur">
+              <Prompt text="Defuse" />
+            </div>
+          )}
         </div>
       </>
     );
@@ -20,6 +35,11 @@ const Card = (num) => {
         <div className="card">
           <img src={Exploding} alt="image" />
           <h1 className="cardtitle">Exploding</h1>
+          {showPrompt && (
+            <div className="blur">
+              <Prompt text="Game Over" />
+            </div>
+          )}
         </div>
       </>
     );
@@ -38,6 +58,11 @@ const Card = (num) => {
         <div className="card">
           <img src={Shuffle} alt="image" />
           <h1 className="cardtitle">Shuffle</h1>
+          {showPrompt && (
+            <div className="blur">
+              <Prompt text="Start Over" />
+            </div>
+          )}
         </div>
       </>
     );
