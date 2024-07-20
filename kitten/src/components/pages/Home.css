@@ -100,6 +100,8 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
+  display: flex;
+  flex-direction: column;
 }
 .pro img {
   height: 80px;

@@ -78,6 +78,9 @@ const Home = () => {
         //check if there is a defuse card
         if (!checkOneBeforeTwo(cards)) {
           handleGameOver();
+        } else if (checkOneBeforeTwo(cards) && cards.length === 5) {
+          //if the last card is an exploding kitten and we have a defuse card in the deck
+          handleGameWon();
         }
       } else if (cards.length === 5) {
         handleGameWon();
@@ -95,7 +98,6 @@ const Home = () => {
       setIsLoading(false);
     }, 3000);
   };
-
   const handleGameOver = () => {
     setPrompt("Game Over");
     setTimeout(() => {
@@ -148,10 +150,10 @@ const Home = () => {
         </div>
         <div className="box start">
           <img src={playIcon} onClick={handlePlayClick} alt="Play" />
-          <img src={stopIcon} onClick={handleStopClick} alt="Stop" />
+          {play && <img src={stopIcon} onClick={handleStopClick} alt="Stop" />}
         </div>
         <div className="box pro">
-          <img src={lead} alt="" />
+          <img src={lead} alt="leader" />
         </div>
       </div>
     </div>
