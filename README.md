@@ -13,6 +13,8 @@ Welcome to the Exploding Kittens Card Game, a single-player online card game whe
    - If you draw a shuffle card, the deck is reshuffled, and the game restarts with a new deck of cards.
 4. **Winning:** Successfully draw all the cards from the deck without drawing an exploding kitten card to win the game.
 
+**Live Demo:** [Link](http://98.70.12.157:8080/)
+
 ## Installation
 
 Clone the repository to your local machine:
@@ -20,3 +22,6 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/Foxtrot-14/Exploding-Kitten.git
 ```
+## Video Demo:
+https://github.com/user-attachments/assets/8fbd41f2-6bd2-4602-acef-06883456d757
+
